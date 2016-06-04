@@ -1,6 +1,6 @@
 #JuanBot
 
-JuanBot is my personal bot which was creating by cloning [Smooch's example bot](https://github.com/smooch/smooch-bot-example).
+JuanBot is my personal bot which was created by cloning [Smooch's example bot](https://github.com/smooch/smooch-bot-example).
 
 If you'd like to build your own, follow the instructions below and then simply edit the script.json file. Please keep in mind that this is a work in progress. This was also heavily inspired by [EstherBot](https://github.com/esthercrawford/EstherBot).
 
