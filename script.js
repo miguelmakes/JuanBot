@@ -13,7 +13,7 @@ module.exports = new Script({
 
     start: {
         receive: (bot) => {
-            return bot.say('Hello there! My name is Juan, Miguel\'s personal bot. To get started, enter \"Yo bot\"')
+            return bot.say('Hello there! My name is Juan, Miguel\'s personal bot. To get started, enter \"YO BOT\"')
                 .then(() => 'speak');
         }
     },
@@ -44,17 +44,46 @@ module.exports = new Script({
                 }
 
                 if (!_.has(scriptRules, upperText)) {
-                    return bot.say(`I didn't understand that.`).then(() => 'speak');
+                    var inputArray = upperText.split(' ');
+                    var commands = Object.keys(scriptRules);
+
+                    var matchedWordsCounter = 0;
+                    var perfectMatch = "";
+
+                    for (var k = 0; k < commands.length; k++) {
+                        var commandArray = commands[k].split(' ');
+
+                        for (var l = 0; l < commandArray.length; l++) {
+                            for (var m = 0; m < inputArray.length; m++) {
+                                if (commandArray[l] == inputArray[m]) {
+                                    matchedWordsCounter++;
+
+                                    if (matchedWordsCounter === commandArray.length) {
+                                        perfectMatch = commands[k];
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    if (perfectMatch.length > 0) {
+                        upperText = perfectMatch;
+                    } else {
+                        return bot.say(`I didn't understand that.`).then(() => 'speak');
+                    }
                 }
 
+                /* *** */
+
                 var response = scriptRules[upperText];
+
                 var lines = response.split('\n');
 
                 var p = Promise.resolve();
                 _.each(lines, function(line) {
                     line = line.trim();
                     p = p.then(function() {
-                        console.log(line);
+                        // console.log(line);
                         return bot.say(line);
                     });
                 })
