@@ -84,7 +84,7 @@ module.exports = new Script({
                     line = line.trim();
                     p = p.then(function() {
                         // console.log(line);
-                        return bot.say(line + "/ ORIGINAL: " + upperText);
+                        return bot.say(line);
                     });
                 })
 
